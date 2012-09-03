@@ -1,0 +1,15 @@
+!!!
+html
+  head
+    title= title
+    block stylesheets
+      link(rel='stylesheet', href='/stylesheets/reset.css')
+      link(rel='stylesheet', href='/stylesheets/github.css')
+      link(rel='stylesheet', href='/stylesheets/style.css')
+    block javascripts
+      script(src="/javascripts/rainbow/rainbow.js")
+      script(src="/javascripts/rainbow/language/ruby.js")
+      script(src="/javascripts/slides.js")
+  body
+    section
+      block content

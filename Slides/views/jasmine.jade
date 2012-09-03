@@ -1,0 +1,141 @@
+extends layout
+
+block content
+  article.slides
+    header
+      hgroup
+        h1 Jasmine JS
+        h2 
+          | Behavior-Driven Development
+
+    section
+      section
+        h2 From the Web Site
+        p.spec
+          | Jasmine is a behavior-driven development framework for testing JavaScript code.
+        p.spec
+          | It does not depend on any other JavaScript frameworks.
+        p.spec
+          | It does not require a DOM. And it has a clean, obvious syntax so that you can easily write tests.
+
+    section
+      section
+        h2 describe()
+        pre
+          code(data-language='javascript').
+            describe("Stack", function() {
+              
+            });
+
+    section
+      section
+        h2 it()
+        pre
+          code(data-language='javascript').
+            describe("Stack", function() {
+
+              it("should have length zero", function() {
+
+              });
+
+            });
+
+    section
+      section
+        h2 expect()
+        pre
+          code(data-language='javascript').
+            describe("Stack", function() {
+
+              it("should have length zero", function() {
+                var stack = new Stack();
+                expect( stack.length() ).toBe( 0 );
+              });
+
+            });
+
+    section
+      section
+        h2 Matchers
+        pre
+          code(data-language='javascript').
+            expect( stack.length ).toBeDefined();
+            expect( stack.length ).not.toBeUndefined();
+            expect( stack.pop() ).toBeNull();
+            expect( stack.size() ).toBeGreaterThan(2);
+            expect( stack.toArray() ).toContain(2);
+
+    section
+      section
+        h2 beforeEach()
+        pre
+          code(data-language='javascript').
+            describe("Stack", function() {
+              var stack;
+
+              beforeEach(function() {
+                stack = new Stack();
+              });
+
+            });
+
+    section
+      section
+        h2 afterEach()
+        pre
+          code(data-language='javascript').
+            describe("Stack", function() {
+              var stack;
+
+              afterEach(function() {
+                stack = undefined;
+              });
+
+            });
+
+    section
+      section
+        h2 Nesting describe()
+        pre
+          code(data-language='javascript').
+            describe("Stack", function() {
+              
+              describe("An Empty Stack", function() {
+
+
+              });
+
+            });
+
+    section
+      section
+        h2 Disabling Specs and Suites
+        pre
+          code(data-language='javascript').
+            xdescribe("Stack", function() {
+
+              xit("should have length zero", function() {
+
+              });
+
+            });
+
+    section
+      section
+        h2 Spies
+        pre
+          code(data-language='javascript').
+            it("should call length when size is called", function() {
+              spyOn(stack, 'length');
+              stack.size();
+              expect(stack.length).toHaveBeenCalled();
+            });
+
+    footer
+      nav
+        h1 Links
+        ul
+          li
+            a(href="http://pivotal.github.com/jasmine/") Home Page
+          li
+            a(href="https://github.com/pivotal/jasmine/downloads") Downloads

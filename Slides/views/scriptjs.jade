@@ -1,0 +1,114 @@
+extends layout
+
+block content
+  article.slides
+    header
+      hgroup
+        h1 $script.js
+        h2 
+          | Asynchronous JavaScript Loader
+
+    section
+      section
+        h2 From the Web Site
+        p.spec
+          | $script.js is an asynchronous JavaScript loader and dependency manager
+          | with an astonishingly impressive lightweight footprint.
+        p.spec
+          | Like many other script loaders, $script.js allows you to load script resources on-demand
+          | from any URL and not block other resources from loading (like CSS and images).
+        p.spec
+          | Furthermore, it's unique interface allows developers to work easily with even the most complicated dependencies,
+          | which can often be the case for large, complex web applications.
+
+    section
+      section
+        h2 Simple Usage
+        pre
+          code(data-language='html').
+            <script src="script.js"></script>
+            <script>
+              $script('foo.js');
+            </script>
+        pre
+          code(data-language='html').
+            <script src="script.js"></script>
+            <script>
+              $script(['foo.js', 'bar.js']);
+            </script>
+
+    section
+      section
+        h2 Ready Functions
+        pre
+          code(data-language='javascript').
+            $script('foo.js', 'foo');
+            $script.ready('foo', function() {
+              // foo.js is ready
+            });
+        pre
+          code(data-language='javascript').
+            $script(['foo.js', 'bar.js'], 'bundle');
+            $script.ready('bundle', function() {
+              // foo.js and bar.js is ready
+            });
+
+    section
+      section
+        h2 Inline Ready Functions
+        pre
+          code(data-language='javascript').
+            $script('foo.js', function() {
+              // foo.js is ready
+            });
+        pre
+          code(data-language='javascript').
+            $script(['foo.js', 'bar.js'], function() {
+              // foo.js and bar.js is ready
+            });
+
+    section
+      section
+        h2 Chaining Ready Functions
+        pre
+          code(data-language='javascript').
+            $script
+              .ready('foo', function() {
+                // foo.js is ready
+              })
+              .ready('bar', function() {
+                // bar.js is ready
+              });
+
+    section
+      section
+        h2 Dependency List
+        pre
+          code(data-language='javascript').
+            var dependencyList = {
+              foo: 'foo.js',
+              bundle: ['bar.js', 'baz.js']
+            };
+        pre
+          code(data-language='javascript').
+            $script.ready(['foo', 'bundle'], function () {
+              // foo.js, bar.js and baz.js is ready
+            });
+
+    footer
+      nav
+        h1 Links
+        ul
+          li
+            a(href="https://github.com/ded/script.js") GitHub Project
+          li
+            a(href="https://github.com/ded/script.js/tree/master/dist") Downloads
+          li
+            a(href="http://dustindiaz.com/scriptjs") Blog Post
+          li
+            a(href="http://headjs.com/") HeadJS
+          li
+            a(href="http://labjs.com/") LabJS
+          li
+            a(href="http://requirejs.org/") RequireJS
+

@@ -1,0 +1,16 @@
+CACHE MANIFEST
+#V2
+
+CACHE:
+/stylesheets/reset.css
+/stylesheets/style.css
+
+/javascripts/rainbow-custom.min.js
+/javascripts/slides.js
+/javascripts/appcache.js 
+
+FALLBACK:
+/stylesheets/github.css /stylesheets/espresso-libre.css
+
+NETWORK:
+*

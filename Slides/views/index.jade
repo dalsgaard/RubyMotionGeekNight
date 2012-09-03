@@ -1,0 +1,79 @@
+extends layout
+
+block append javascripts
+  script useHistory = false;
+
+block content
+  article.slides
+    header
+      hgroup
+        h1 HTML5 & CSS3
+        h2 
+          | html5stuff.nodejitsu.com
+
+    section
+      section
+        h2 Day 1
+        nav
+          ul
+            li
+              a(href="/structure") HTML5 Structure
+            li
+              a(href="/selectors") CSS3 Selectors
+            li
+              a(href="/nutsandbolts") HTML5 Nuts & Bolts
+            li
+              a(href="/canvas") The Canvas Element
+            li
+              a(href="/filereader") Input type file & FileReader
+            li
+              a(href="/history") History API
+            li
+              a(href="/transforms") CSS3 Transforms
+
+    section
+      section
+        h2 Day 2
+        nav
+          ul
+            li
+              a(href="/transitions") CSS3 Transitions
+            li
+              a(href="/animations") CSS3 Animations
+            li
+              a(href="/xhr") XMLHttpRequest Level 2
+            li
+              a(href="/webworkers") Web Workers
+            li
+              a(href="/webstorage") Web Storage
+            li
+              a(href="/appcache") AppCache
+            li
+              a(href="/mediaqueries") Media Queries
+            li
+              a(href="/border") CSS3 Border and Box Effects
+            li
+              a(href="/gradient") CSS3 Gradients
+
+    footer
+      nav
+        h1 Links
+        ul
+          li
+            a(href="http://www.whatwg.org/specs/web-apps/current-work/multipage/") WHATWG
+          li
+            a(href="http://www.w3.org/TR/#tr_CSS") CSS @ W3C
+          li
+            a(href="http://www.html5rocks.com/en/") HTML5 Rocks
+          li
+            a(href="http://html5doctor.com/") HTML5 Doctor
+          li
+            a(href="http://caniuse.com/") When can I use...
+          li
+            a(href="http://html5test.com/") HTML5 Test
+          li
+            a(href="http://haz.io/") haz.io
+          li
+            a(href="http://modernizr.com/") Modernizr
+          li
+            a(href="http://html5boilerplate.com/") HTML5 Boilerplate

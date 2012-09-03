@@ -1,0 +1,328 @@
+extends layout
+
+block content
+  article.slides
+    header
+      hgroup
+        h1 RubyMotion
+        h2 
+          | Ruby for iOS
+
+    section
+      section
+        h2 Application Delegate
+        pre
+          code(data-language='ruby').
+            class AppDelegate
+
+              def application(application,
+                didFinishLaunchingWithOptions:launchOptions)                
+                
+                @window = UIWindow.alloc
+                  .initWithFrame(UIScreen.mainScreen.bounds)
+                @window.makeKeyAndVisible
+                true
+              end
+
+            end
+
+    section
+      section
+        h2 View Controller
+        pre
+          code(data-language='ruby').
+            class TapController < UIViewController
+
+              def viewDidLoad()
+                super
+              end
+
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            def application(application,
+              didFinishLaunchingWithOptions:launchOptions)
+              
+              @window = UIWindow.alloc
+                .initWithFrame(UIScreen.mainScreen.bounds)
+              @window.makeKeyAndVisible
+              tap = TapController.alloc
+                .initWithNibName(nil, bundle: nil);
+              @window.rootViewController = tap
+              true
+            end
+
+    section
+      section
+        h2 viewDidLoad()
+        pre
+          code(data-language='ruby').
+            def viewDidLoad()
+              super
+              self.view.backgroundColor = UIColor.whiteColor
+              @label = UILabel.alloc.initWithFrame(CGRectZero)
+              @label.text = "Tap!"
+              @label.sizeToFit
+              self.view.addSubview @label
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            size = self.view.frame.size
+            x = size.width / 2
+            y = size.height / 2
+            @label.center = CGPointMake(x, y)
+        pre
+          code(data-language='ruby').
+            @label.center = [x, y]
+
+    section
+      section
+        h2 Navigation Controller
+        pre
+          code(data-language='ruby').
+            tap = TapController.alloc
+              .initWithNibName(nil, bundle: nil);
+            nav = UINavigationController.alloc
+              .initWithRootViewController(tap)
+            @window.rootViewController = nav
+
+    section
+      section
+        h2 Title
+        pre
+          code(data-language='ruby').
+            def viewDidLoad()
+              super
+              self.title = "Tap"
+            end
+
+    section
+      section
+        h2 Bar Button Item
+        pre
+          code(data-language='ruby').
+            push = UIBarButtonItem.alloc.
+              initWithTitle("Push",
+                style: UIBarButtonItemStyleBordered,
+                target:self,
+                action:'push')
+            self.navigationItem.rightBarButtonItem = push
+
+    section
+      section
+        h2 target / action
+        pre
+          code(data-language='ruby').
+            class TapController < UIViewController
+
+              def push()
+                # Right bar button is pressed!
+              end
+
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            push = UIBarButtonItem.alloc.
+              initWithTitle("Push",
+                style: UIBarButtonItemStyleBordered,
+                target:self,
+                action:'push:')
+        pre
+          code(data-language='ruby').
+            def push(sender)
+              puts sender
+            end
+
+    section
+      section
+        h2 pushViewController()
+        pre
+          code(data-language='ruby').
+            def push()
+              tap = TapController.alloc
+                .initWithNibName(nil, bundle: nil)
+              self.navigationController
+                .pushViewController(tap,
+                  animated: true)
+            end
+
+    section
+      section
+        h2 viewControllers
+        - var count = "#{count}"
+        pre
+          code(data-language='ruby').
+            count = self.navigationController
+              .viewControllers.count
+            self.title = "Tap (#{count})"
+
+    section
+      section
+        h2 Tables
+        pre
+          code(data-language='ruby').
+            class TableController < UIViewController
+              def viewDidLoad()
+                super
+                self.title = "Table"
+                @table = UITableView.alloc
+                  .initWithFrame(self.view.bounds)
+                self.view.addSubview(@table)
+              end
+            end
+
+    section
+      section
+        h2 autoresizingMask
+        pre
+          code(data-language='ruby').
+            @table.autoresizingMask =
+              UIViewAutoresizingFlexibleHeight
+        pre
+          code(data-language='ruby').
+            UIViewAutoresizingNone
+            UIViewAutoresizingFlexibleLeftMargin
+            UIViewAutoresizingFlexibleWidth
+            UIViewAutoresizingFlexibleRightMargin
+            UIViewAutoresizingFlexibleTopMargin
+            UIViewAutoresizingFlexibleHeight
+            UIViewAutoresizingFlexibleBottomMargin
+
+    section
+      section
+        h2 Data Source
+        pre
+          code(data-language='ruby').
+            @table.dataSource = self
+        pre
+          code(data-language='ruby').
+            def tableView(tableView,
+              cellForRowAtIndexPath: indexPath)
+            end
+
+            def tableView(tableView,
+              numberOfRowsInSection: section)
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            @data = [
+              ["AED": 3.673963],
+              ["AFN": 48.3775],
+              ["ALL": 109.918332],
+              ["AMD": 408.614998]]
+        pre
+          code(data-language='ruby').
+            def tableView(tableView,
+              numberOfRowsInSection: section)
+              @data.length
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            def tableView(tableView,
+              cellForRowAtIndexPath: indexPath)
+              cell = UITableViewCell.alloc
+                .initWithStyle(UITableViewCellStyleValue1,
+                  reuseIdentifier:nil)
+              cell.textLabel.text =
+                @data[indexPath.row].first
+              cell.detailTextLabel.text =
+                @data[indexPath.row].last.to_s
+              cell
+            end
+
+    section
+      section
+        h2 Dequeue Reusable Cell
+        pre
+          code(data-language='ruby').
+            cell = tableView
+              .dequeueReusableCellWithIdentifier('foo')
+            unless cell
+              cell = UITableViewCell.alloc
+                .initWithStyle(UITableViewCellStyleValue1,
+                  reuseIdentifier:'foo')
+              puts indexPath.row
+            end
+
+    section
+      section
+        h2 Delegate
+        pre
+          code(data-language='ruby').
+            @table.delegate = self
+        pre
+          code(data-language='ruby').
+            def tableView(tableView,
+              didSelectRowAtIndexPath:indexPath)
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            def tableView(tableView,
+              didSelectRowAtIndexPath:indexPath)
+              tableView.deselectRowAtIndexPath(indexPath,
+                animated: true)
+              self.navigationController
+                .popViewControllerAnimated(true)
+            end
+
+    section
+      section
+        h2 Animations
+        pre
+          code(data-language='ruby').
+            @colors = [
+              UIColor.blueColor,
+              UIColor.redColor,
+              UIColor.greenColor,
+              UIColor.yellowColor,
+              UIColor.whiteColor]
+
+    section
+      section
+        h2 viewDidAppear()
+        pre
+          code(data-language='ruby').
+            def viewDidAppear(animated)
+              @index = 0
+              next_color
+            end
+        pre
+          code(data-language='ruby').
+            def next_color()
+              if @index < @colors.length
+                # animate
+              end
+            end
+
+    section
+      section
+        h2 animateWithDuration()
+        pre
+          code(data-language='ruby').
+            UIView.animateWithDuration(1.0,
+              animations:lambda {
+                self.view.backgroundColor =
+                  @colors[@index]
+              },
+              completion:lambda {|finished|
+                @index += 1
+                self.next_color
+              })
