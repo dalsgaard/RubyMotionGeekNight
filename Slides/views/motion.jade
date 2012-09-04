@@ -158,12 +158,11 @@ block content
     section
       section
         h2 viewControllers
-        - var count = "#{count}"
         pre
           code(data-language='ruby').
             count = self.navigationController
               .viewControllers.count
-            self.title = "Tap (#{count})"
+            self.title = "Tap (&#35;{count})"
 
     section
       section

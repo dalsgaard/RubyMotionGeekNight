@@ -1,0 +1,79 @@
+extends layout
+
+block content
+  article.slides
+    header
+      hgroup
+        h1 MacRuby
+        h2 
+          | Ruby on the Objective-C Runtime
+
+    section
+      section
+        h2 Class
+        pre
+          code(data-language='ruby').
+            class Shape < Graphic
+              def set_outline_color(outline_color,
+                  fill_color:fill_color)
+                @outline_color = outline_color
+                @fill_color = fill_color
+              end
+            end
+
+    section
+      section
+        h2 Messages
+        pre
+          code(data-language='ruby').
+            shape = Shape.alloc.init
+
+            outline_color = NSColor.blueColor
+            fill_color = NSColor.redColor
+
+            shape.set_outline_color outline_color,
+              fill_color:fill_color
+
+    section
+      section
+        h2 Blocks
+        pre
+          code(data-language='ruby').
+            m = 10
+            block = lambda do |n|
+              n + m
+            end
+            block.call 5
+        pre
+          code(data-language='ruby').
+            block = lambda { |n| n + m }
+            block.call(5)
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            def with_block()
+              yield 5 if block_defined?
+            end
+
+            j = with_block do |n|
+              n * n
+            end
+        pre
+          code(data-language='ruby').
+            def with_block(&block)
+              block.call 5 if block
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            def with_block(block)
+              block.call 5
+            end
+
+            j = with_block lambda { |n|
+              n * n
+            }

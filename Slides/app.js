@@ -27,6 +27,12 @@ app.get('/', routes.index);
 app.get('/motion/:slide', routes.motion);
 app.get('/motion', routes.motion);
 
+app.get('/objectivec/:slide', routes.objectivec);
+app.get('/objectivec', routes.objectivec);
+
+app.get('/macruby/:slide', routes.macruby);
+app.get('/macruby', routes.macruby);
+
 app.get('/scriptjs/:slide', routes.scriptjs);
 app.get('/scriptjs', routes.scriptjs);
 

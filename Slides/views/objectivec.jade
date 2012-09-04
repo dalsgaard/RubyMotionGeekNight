@@ -1,0 +1,83 @@
+extends layout
+
+block content
+  article.slides
+    header
+      hgroup
+        h1 Objective-C
+        h2 
+          | The Native Language for iOS
+
+    section
+      section
+        h2 Interface
+        pre
+          code(data-language='c').
+            @interface Shape : Graphic {
+              NSColor *outlineColor;
+              NSColor *fillColor;
+            }
+            - (void)setOutlineColor:(NSColor *)outlineColor
+                          fillColor:(NSColor *)fillColor;
+            @end
+
+    section
+      section
+        h2 Implementation
+        pre
+          code(data-language='c').
+            @implementation Shape
+              - (void)setOutlineColor:(NSColor *)outlineColor
+                          fillColor:(NSColor *)fillColor
+              {
+                // method implementation
+              }
+            @end
+
+    section
+      section
+        h2 Messages
+        pre
+          code(data-language='c').
+            Shape *shape = [[Shape alloc] init];
+
+            NSColor *outlineColor = [NSColor blueColor];
+            NSColor *fillColor = [NSColor redColor];
+
+            [shape setOutlineColor:outlineColor
+                         fillColor:fillColor];
+
+    section
+      section
+        h2 Protocol
+        pre
+          code(data-language='c').
+            @protocol DrawableItem
+            - (void)drawItem;
+            - (NSRect)boundingBox;
+            @end
+        pre
+          code(data-language='c').
+            @interface Shape : Graphic &lt;DrawableItem&gt;
+              // protocol implementation 
+            @end
+
+    section
+      section
+        h2 Blocks
+        pre
+          code(data-language='c').
+            int m = 10;
+            int (^block)(int) = ^(int n){
+              return n + m
+            }
+            int k = block(5);
+        pre
+          code(data-language='c').
+            - (void)withBlock:(int (^)(int))block;
+        pre
+          code(data-language='c').
+            [self withBlock:^(int n){
+              return n + m
+            }];
+

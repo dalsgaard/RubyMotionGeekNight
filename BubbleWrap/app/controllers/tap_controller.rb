@@ -59,4 +59,9 @@ class TapController < UIViewController
     true
   end
 
+  def viewWillAppear(animated)
+
+  end
+
+
 end
