@@ -19,6 +19,10 @@ exports.macruby = function(req, res){
   res.render('macruby', { title: 'MacRuby' });
 };
 
+exports.bubblewrap = function(req, res){
+  res.render('bubblewrap', { title: 'BubbleWrap' });
+};
+
 exports.scriptjs = function(req, res){
   res.render('scriptjs', { title: '$script.js' });
 };

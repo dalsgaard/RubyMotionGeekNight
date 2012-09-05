@@ -1,0 +1,200 @@
+extends layout
+
+block content
+  article.slides
+    header
+      hgroup
+        h1 BubbleWrap
+        h2 
+          | More Ruby like APIs
+
+    section
+      section
+        h2 Installation and Setup
+        pre
+          code.
+            gem install bubble-wrap
+        pre
+          code(data-language='ruby').
+            require 'bubble-wrap'
+        pre
+          code(data-language='ruby').
+            require 'bubble-wrap/core'
+            require 'bubble-wrap/http'
+
+    section
+      section
+        h2 Core
+        pre
+          code(data-language='ruby').
+            require 'bubble-wrap/core'
+        pre
+          code(data-language='ruby').
+            BubbleWrap.create_uuid
+        pre
+          code(data-language='ruby').
+            BubbleWrap.localized_string(:foo, 'fallback')
+        pre
+          code(data-language='ruby').
+            BubbleWrap.rgba_color(23, 45, 12, 0.4)
+        pre
+          code(data-language='ruby').
+            '#FF8A19'.to_color
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            App.documents_path
+            App.resources_path
+        pre
+          code(data-language='ruby').
+            App.name
+            App.identifier
+        pre
+          code(data-language='ruby').
+            App.alert("BubbleWrap is awesome!")
+        pre
+          code(data-language='ruby').
+            App.run_after(0.5) { p "Delayed!" }
+        pre
+          code(data-language='ruby').
+            App.open_url("http://trifork.com")
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            Device.iphone?
+            Device.ipad?
+        pre
+          code(data-language='ruby').
+            Device.front_camera?
+            Device.rear_camera?
+        pre
+          code(data-language='ruby').
+            Device.orientation
+        pre
+          code(data-language='ruby').
+            Device.retina?
+        pre
+          code(data-language='ruby').
+            Device.simulator?
+            
+    section
+      section
+        pre
+          code(data-language='ruby').
+            types = [:movie, :image]
+            BW::Device.camera.front
+              .picture(media_types: types) do |r|
+                image = r[:original_image]
+                image_view = UIImageView.alloc
+                  .initWithImage(image)
+            end
+        pre
+          code(data-language='ruby').
+            BW::Device.camera.any
+              .picture(media_types: [:image]) do |r|
+                image = r[:original_image]
+                image_view = UIImageView.alloc
+                  .initWithImage(image)
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            foo = {
+              bar => [1, 2, 4],
+              baz => "awesome"
+            }
+            json = BW::JSON.generate(foo)
+        pre
+          code(data-language='ruby').
+            json = %{{"bar":[1, 2, 4],"baz":6}}
+            foo = BW::JSON.parse(json)
+
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            @label = UILabel.alloc
+              .initWithFrame CGRectZero
+            @label.text = ""
+            self.view.addSubview @label
+
+            BW::KVO.observe(@label, :text) do |ov, nv|
+              puts ov, nv
+            end
+
+    section
+      section
+        h2 UI
+        pre
+          code(data-language='ruby').
+            require 'bubble-wrap/ui'
+        pre
+          code(data-language='ruby').
+            button.when(UIControlEventTouchUpInside) do
+              self.view.backgroundColor
+                = UIColor.redColor
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            view.whenTapped do
+              UIView.animateWithDuration(1.0,
+                animations:lambda {
+                  self.view.backgroundColor
+                    = '#aabbcc'.to_color
+                })
+            end
+
+    section
+      section
+        h2 HTTP
+        pre
+          code(data-language='ruby').
+            require 'bubble-wrap/http'
+        pre
+          code(data-language='ruby').
+            url = "http://foo.bar.baz"
+            BW::HTTP.get(url) do |res|
+              p res.body.to_str
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            url = "http://foo.bar.baz"
+            options = {
+              credentials => {
+                :username => 'kim',
+                :password => 'dalsgaard'
+              }
+            }
+            BW::HTTP.get(url, options) do |res|
+              p res.body.to_str
+            end
+
+    section
+      section
+        pre
+          code(data-language='ruby').
+            url = "http://foo.bar.baz"
+            data = {
+              first_name: 'Kim',
+              last_name: 'Dalsgaard'
+            }
+            BW::HTTP.post(url, {payload: data}) do |res|
+              if res.ok?
+                json = BW::JSON.parse(res.body.to_str)
+              else
+                App.alert(res.error_message)
+              end
+            end
