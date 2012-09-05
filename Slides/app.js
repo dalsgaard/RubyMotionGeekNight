@@ -36,6 +36,9 @@ app.get('/macruby', routes.macruby);
 app.get('/bubblewrap/:slide', routes.bubblewrap);
 app.get('/bubblewrap', routes.bubblewrap);
 
+app.get('/macbacon/:slide', routes.macbacon);
+app.get('/macbacon', routes.macbacon);
+
 app.get('/scriptjs/:slide', routes.scriptjs);
 app.get('/scriptjs', routes.scriptjs);
 

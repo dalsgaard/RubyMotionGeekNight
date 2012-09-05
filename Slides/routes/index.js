@@ -23,6 +23,10 @@ exports.bubblewrap = function(req, res){
   res.render('bubblewrap', { title: 'BubbleWrap' });
 };
 
+exports.macbacon = function(req, res){
+  res.render('macbacon', { title: 'MacBacon' });
+};
+
 exports.scriptjs = function(req, res){
   res.render('scriptjs', { title: '$script.js' });
 };

@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  article.slides
+    header
+      hgroup
+        h1 MacBacon
+        h2 
+          | RubyMotion Testing
+
+    section
+      section
+        h2 Simple Specification
+        pre
+          code(data-language='ruby').
+            describe "Application 'ExRate'" do
+              before do
+                @app = UIApplication.sharedApplication
+              end
+
+              it "has one window" do
+                @app.windows.size.should == 1
+              end
+            end
+
+    section
+      section
+        h2 Testing a Controller
+        pre
+          code(data-language='ruby').
+            describe "Currency Controller" do
+              tests TapController
+
+              it "has one button" do
+                views(UIButton).size.should == 1
+              end
+
+            end
+
